@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F6B5C">
+<meta name="referrer" content="no-referrer">
+<title>Ratito de Juegos</title>
+<link rel="stylesheet" href="css/estilos.css?v=3">
+</head>
+<body>
+
+
+
+<main id="hub" class="wrap">
+  <header class="hello">
+    <small id="greet">Buenos días</small>
+    <h1>Ratito de Juegos</h1>
+    <p class="lead">Elija un juego. "Todos se juegan con el dedo y sin reloj".</p>
+  </header>
+  <button class="btn resume" id="hubResume" hidden><small>Seguir jugando</small><b id="hubResumeTxt"></b></button>
+  <div class="games" id="hubGames"></div>
+  <h2 class="sec">Cuentos</h2>
+  <div class="games one" id="hubTales"></div>
+  <h2 class="sec">Rincón de Calma</h2>
+  <p class="legend">Actividades tranquilas para relajarse y sentirse mejor. Sin niveles, sin puntos y sin prisa.</p>
+  <div class="games" id="hubCalm"></div>
+  <div class="prefs">
+    <button class="btn ghost" id="hubSnd">Sonido: sí</button>
+    <button class="btn ghost" id="hubBig">Letra: normal</button>
+  </div>
+  <p class="note" id="hubTotal">Su avance se guarda en este celular.</p>
+</main>
+
+<div class="over" id="restOver" hidden><div class="win" role="dialog" aria-labelledby="restT">
+  <h2 id="restT">Hora de un descanso</h2>
+  <p>Lleva un buen rato jugando. Levántese un momento, tome un vaso de agua, estire las piernas y descanse la vista mirando a lo lejos.</p>
+  <button class="btn" id="restOk">Ya descansé, seguir</button>
+</div></div>
+
+<script src="js/app.js?v=2"></script>
+<div class="gapp" id="app-s" hidden>
+
+
+<div class="wrap">
+  <!-- INICIO -->
+  <section id="s-home" class="wrap">
+    <button class="hub-back" data-hub>‹ Todos los juegos</button>
+    <header>
+      <h1>Sopa de Letras</h1>
+      <p class="lead">50 niveles, de fácil a difícil. Sin reloj: juegue a su ritmo.</p>
+    </header>
+    <button class="btn cont" id="s-contBtn"><small>Continuar</small><b id="s-contTxt">Nivel 1 · Frutas</b></button>
+    <h2 class="sec">Niveles</h2>
+    <div class="lvls" id="s-lvls"></div>
+    <p class="legend">Cada nivel da hasta 3 estrellas. Cada pista usada quita una.</p>
+  </section>
+
+  <!-- JUEGO -->
+  <section id="s-game" class="wrap" hidden>
+    <div class="top">
+      <button class="icon" id="s-backBtn" aria-label="Volver a niveles">‹</button>
+      <div class="ttl"><small id="s-lvlNum">Nivel 1</small><b id="s-lvlTheme">Frutas</b></div>
+      <button class="icon" id="s-resetBtn" aria-label="Reiniciar nivel">↻</button>
+    </div>
+    <ul class="words" id="s-words"></ul>
+    <div class="board"><div class="grid" id="s-grid"></div></div>
+    <p class="msg" id="s-msg" aria-live="polite"></p>
+    <div class="status">
+      <span class="count" id="s-count">0 de 4</span>
+      <button class="btn" id="s-hintBtn">Pista</button>
+    </div>
+    <p class="help" id="s-help">Deslice el dedo sobre la palabra, o toque la primera letra y luego la última.</p>
+  </section>
+</div>
+
+<!-- NIVEL TERMINADO -->
+<div class="over" id="s-over" hidden>
+  <div class="win" role="dialog" aria-labelledby="s-winT">
+    <h2 id="s-winT">¡Muy bien!</h2>
+    <div class="stars" id="s-winStars"></div>
+    <p id="s-winTxt">Encontró todas las palabras.</p>
+    <button class="btn" id="s-nextBtn">Siguiente nivel</button>
+    <button class="btn ghost" id="s-toHome">Ver niveles</button>
+  </div>
+</div>
+
+
+</div>
+<script src="js/juegos/sopa-letras.js?v=1"></script>
+<div class="gapp" id="app-b" hidden>
+
+
+<div class="wrap">
+  <section id="b-home" class="wrap">
+    <button class="hub-back" data-hub>‹ Todos los juegos</button>
+    <header>
+      <h1>Lluvia de Burbujas</h1>
+      <p class="lead">Junte 3 o más burbujas del mismo color para reventarlas. 50 niveles, sin reloj.</p>
+    </header>
+    <button class="btn cont" id="b-contBtn"><small>Continuar</small><b id="b-contTxt">Nivel 1</b></button>
+    <div class="how">
+      <p><b>Cómo se juega:</b> ponga el dedo en la pantalla y muévalo para apuntar. La línea de puntos muestra a dónde va. Suelte el dedo para lanzar.</p>
+      <p>Toque la burbuja pequeña de la izquierda (o el botón <b>Cambiar</b>) para cambiar de color.</p>
+    </div>
+    <h2 class="sec">Niveles</h2>
+    <div class="lvls" id="b-lvls"></div>
+    <p class="legend">Menos tiros, más estrellas. Desde el nivel 9, si falla varias veces baja una fila nueva.</p>
+  </section>
+
+  <section id="b-game" class="wrap" hidden>
+    <div class="top">
+      <button class="icon" id="b-backBtn" aria-label="Volver a niveles">‹</button>
+      <div class="ttl"><small id="b-lvlNum">Nivel 1 de 12</small><b id="b-lvlName">Para empezar</b></div>
+      <button class="icon" id="b-resetBtn" aria-label="Reiniciar nivel">↻</button>
+    </div>
+    <div class="stage" id="b-stage"><canvas id="b-cv" aria-label="Tablero de burbujas"></canvas></div>
+    <div class="hud">
+      <div class="info"><b id="b-shotsTxt">Tiros: 0</b><span id="b-pushTxt"></span></div>
+      <button class="btn" id="b-swapBtn">Cambiar</button>
+    </div>
+  </section>
+</div>
+
+<div class="over" id="b-over" hidden>
+  <div class="win" role="dialog" aria-labelledby="b-winT">
+    <h2 id="b-winT">¡Muy bien!</h2>
+    <div class="stars" id="b-winStars"></div>
+    <p id="b-winTxt"></p>
+    <button class="btn" id="b-nextBtn">Siguiente nivel</button>
+    <button class="btn ghost" id="b-toHome">Ver niveles</button>
+  </div>
+</div>
+
+
+</div>
+<script src="js/juegos/burbujas.js?v=1"></script>
+<div class="gapp wrap" id="app-m" hidden>
+  <section id="m-home" class="wrap">
+    <button class="hub-back" data-hub>‹ Todos los juegos</button>
+    <header>
+      <h1>Memorama</h1>
+      <p class="lead">Voltee dos tarjetas. Si son iguales, se quedan abiertas. 50 niveles, sin reloj.</p>
+    </header>
+    <button class="btn cont" id="m-contBtn"><small>Continuar</small><b id="m-contTxt">Nivel 1</b></button>
+    <h2 class="sec">Niveles</h2>
+    <div class="lvls" id="m-lvls"></div>
+    <p class="legend">En los primeros niveles verá todas las tarjetas unos segundos antes de empezar. Menos intentos, más estrellas.</p>
+  </section>
+
+  <section id="m-game" class="wrap" hidden>
+    <div class="top">
+      <button class="icon" id="m-backBtn" aria-label="Volver a niveles">‹</button>
+      <div class="ttl"><small id="m-lvlNum">Nivel 1 de 8</small><b id="m-lvlName">Frutas</b></div>
+      <button class="icon" id="m-resetBtn" aria-label="Reiniciar nivel">↻</button>
+    </div>
+    <p class="msg" id="m-msg" aria-live="polite"></p>
+    <div class="cards" id="m-cards"></div>
+    <div class="status"><span class="count" id="m-pairs">0 de 3</span><span class="count" id="m-tries">Intentos: 0</span></div>
+  </section>
+
+  <div class="over" id="m-over" hidden>
+    <div class="win" role="dialog" aria-labelledby="m-winT">
+      <h2 id="m-winT">¡Muy bien!</h2>
+      <div class="stars" id="m-winStars"></div>
+      <p id="m-winTxt"></p>
+      <button class="btn" id="m-nextBtn">Siguiente nivel</button>
+      <button class="btn ghost" id="m-toHome">Ver niveles</button>
+    </div>
+  </div>
+</div>
+<script src="js/juegos/memorama.js?v=1"></script>
+<script src="js/juegos/refranes.js?v=1"></script>
+<script src="js/juegos/cuentas.js?v=1"></script>
+<script src="js/juegos/secuencia.js?v=1"></script>
+<script src="js/juegos/serpientes.js?v=1"></script>
+<script src="js/cuentos-datos.js?v=2"></script>
+<script src="js/juegos/cuentos.js?v=2"></script>
+
+<!-- ============ Respira Conmigo ============ -->
+<div class="gapp wrap" id="app-x1" hidden style="--accent:var(--sage)">
+  <button class="hub-back" data-hub>‹ Todos los juegos</button>
+  <header><h1>Respira Conmigo</h1><p class="lead">Siga el círculo: cuando crece, tome aire; cuando se encoge, suéltelo despacio.</p></header>
+  <div class="opt-row"><span>Ritmo</span><div class="seg" id="br-ritmo">
+    <button aria-pressed="true" data-v="tranquilo">Tranquilo</button><button aria-pressed="false" data-v="parejo">Parejo</button></div></div>
+  <div class="opt-row"><span>Tiempo</span><div class="seg" id="br-min">
+    <button aria-pressed="false" data-v="1">1 minuto</button><button aria-pressed="true" data-v="3">3 minutos</button><button aria-pressed="false" data-v="5">5 minutos</button></div></div>
+  <div class="breath"><div class="ring"></div><div class="ball" id="br-ball"><div><b id="br-word">Listo</b><span id="br-num"></span></div></div></div>
+  <p class="calm-note" id="br-note" aria-live="polite">Siéntese cómodo y relaje los hombros.</p>
+  <button class="btn" id="br-go">Empezar</button>
+</div>
+
+<!-- ============ Mandalas ============ -->
+<div class="gapp wrap" id="app-x2" hidden style="--accent:var(--lav)">
+  <button class="hub-back" data-hub>‹ Todos los juegos</button>
+  <header><h1>Mandalas para Colorear</h1><p class="lead">Elija un color y toque una parte del dibujo. No hay prisa ni manera equivocada de hacerlo.</p></header>
+  <div class="swatches" id="md-sw"></div>
+  <div class="paper"><svg id="md-svg" viewBox="-100 -100 200 200" aria-label="Mandala para colorear"></svg></div>
+  <p class="calm-note" id="md-label">Dibujo 1 de 12</p>
+  <div class="rowbtns"><button class="btn ghost" id="md-clear" data-confirm>Borrar colores</button><button class="btn" id="md-next">Otro dibujo</button></div>
+</div>
+
+<!-- ============ Tres Cosas Buenas ============ -->
+<div class="gapp wrap" id="app-x3" hidden style="--accent:var(--amber)">
+  <button class="hub-back" data-hub>‹ Todos los juegos</button>
+  <header><h1>Tres Cosas Buenas</h1><p class="lead" id="gd-date">Hoy</p></header>
+  <p class="calm-note" style="text-align:left">Piense en tres cosas buenas de hoy, aunque sean pequeñas: un café rico, una llamada, el sol en la ventana.</p>
+  <ul class="good-list" id="gd-list"></ul>
+  <div class="field" id="gd-field">
+    <b id="gd-q">¿Qué le hizo sonreír hoy?</b>
+    <div class="chips" id="gd-chips"></div>
+    <textarea id="gd-txt" placeholder="O escríbalo con sus palabras…" aria-label="Escriba una cosa buena"></textarea>
+    <button class="btn" id="gd-add">Guardar</button>
+  </div>
+  <p class="calm-note" id="gd-msg" aria-live="polite"></p>
+  <h2 class="sec">Días anteriores</h2>
+  <div class="past" id="gd-past"></div>
+  <p class="legend">Lo que escriba solo se guarda en este celular.</p>
+</div>
+
+<!-- ============ Jardín Tranquilo ============ -->
+<div class="gapp wrap" id="app-x4" hidden style="--accent:var(--sage)">
+  <button class="hub-back" data-hub>‹ Todos los juegos</button>
+  <header><h1>Jardín Tranquilo</h1><p class="lead">Toque la tierra para plantar una flor y mírela crecer.</p></header>
+  <div class="garden"><canvas id="jd-cv" aria-label="Jardín: toque para plantar flores"></canvas></div>
+  <div class="rowbtns"><button class="btn ghost" id="jd-rain">Lluvia suave: no</button><button class="btn ghost" id="jd-clear" data-confirm>Empezar de nuevo</button></div>
+</div>
+
+<script src="js/juegos/calma.js?v=1"></script>
+<script src="js/inicio.js?v=1"></script>
+
+</body>
+</html>
